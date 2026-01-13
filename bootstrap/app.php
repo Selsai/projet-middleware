@@ -12,7 +12,6 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware): void {
-        // ← MODIFIER CETTE PARTIE
         $middleware->append(LogRequestMiddleware::class);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
