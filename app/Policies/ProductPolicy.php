@@ -5,6 +5,7 @@ namespace App\Policies;
 use App\Models\Product;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
+use Spatie\Permission\Models\Role;
 
 class ProductPolicy
 {
@@ -33,5 +34,13 @@ class ProductPolicy
     public function create(?User $user): bool
     {
         return true;
+    }
+
+    public function before(User $user, string $ability): bool|null
+    {
+        if ($user->hasRole('admin')) {
+            return true;
+        }
+        return null;
     }
 }
