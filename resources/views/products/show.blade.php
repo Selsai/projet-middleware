@@ -15,14 +15,12 @@
                     <p><strong>Propriétaire :</strong> {{ $product->user->name }}</p>
 
                     <div class="mt-4">
-                        {{--  Condition --}}
-                        @can('manage-product', $product)
+                        @can('update', $product)                 <!-- policy-->
                             <a href="{{ route('products.edit', $product) }}" class="text-blue-600 underline">
                                 Modifier le produit
                             </a>
                         @endcan
 
-                        {{-- Toujours visible : Retour --}}
                         <a href="{{ route('products.index') }}" class="ms-4 text-gray-600 underline">
                             ← Retour à la liste
                         </a>

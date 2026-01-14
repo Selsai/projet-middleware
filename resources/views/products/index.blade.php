@@ -21,23 +21,21 @@
                                 — {{ $product->is_public ? 'Public' : 'Privé' }}
                                 <br />
                                 
-                                {{-- LIEN VOIR conditionnel --}}
-                                @can('view-product', $product)
+                                @can('view', $product)                      <!-- policy -->
                                     <a href="{{ route('products.show', $product) }}" class="ml-2 text-blue-600 underline">
                                         Voir
                                     </a>
                                 @endcan
                                 
-                                {{-- LIENS MODIFIER/SUPPRIMER conditionnels --}}
-                                @can('manage-product', $product)
+                                @can('update', $product)                     <!-- policy-->
                                     <a href="{{ route('products.edit', $product) }}" class="ml-2 text-green-600 underline">
                                         Modifier
                                     </a>
 
-                                    <form action="{{ route('products.destroy', $product) }}" method="POST" class="inline ml-2">
+                                    <form action="{{ route('products.destroy', $product) }}" method="POST" class="inline">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="text-red-600 underline"
+                                        <button type="submit" class="ml-2 text-red-600 underline"
                                             onclick="return confirm('Supprimer ce produit ?')">
                                             Supprimer
                                         </button>
