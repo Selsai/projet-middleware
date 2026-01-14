@@ -6,16 +6,11 @@ use App\Models\User;
 use App\Models\Product;
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Spatie\Permission\Models\Role;
-use Spatie\Permission\Models\Permission;
 
 class DatabaseSeeder extends Seeder
 {
     use WithoutModelEvents;
 
-    /**
-     * Seed the application's database.
-     */
     public function run(): void
     {
         // Utilisateur "admin"
@@ -32,7 +27,8 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt('password'),
         ]);
 
-        $this->call(AdminSeeder::class);
+        
+        $this->call(RolePermissionSeeder::class);
 
         // Produits de l'admin
         Product::factory()->count(3)->create([
